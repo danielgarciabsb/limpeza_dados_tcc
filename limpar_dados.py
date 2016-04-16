@@ -6,7 +6,7 @@ import csv
 import md5
 from unicodedata import normalize
 
-DEBUG = False
+DEBUG = True
 
 class arquivoCSV(object):
     """Classe para tratar o arquivo CSV"""
@@ -93,24 +93,27 @@ class arquivoCSV(object):
     def getHeader(self):
         return self.header
 
+def test():
+    csv = arquivoCSV(sys.argv[1])
+    print csv.getAlunos()
+    print csv.getHeader()
 
-csv = arquivoCSV(sys.argv[1])
-print csv.getAlunos()
-print csv.getHeader()
+    print 'Quantidade de atributos: %d' % len(csv.getHeader())
+    print 'Quantidade de alunos: %d' % len(csv.getAlunos())
 
-print 'Quantidade de atributos: %d' % len(csv.getHeader())
-print 'Quantidade de alunos: %d' % len(csv.getAlunos())
+    print 'Verificando a consistencia (quantidade de atributos) de cada aluno...'
 
-print 'Verificando a consistencia (quantidade de atributos) de cada aluno...'
+    erro = 0
+    for aluno in csv.getAlunos():
+        if len(aluno) != len(csv.getHeader()):
+            print 'Um erro ocorreu! len(aluno) != len(csv.getHeader())!'
+            print aluno
+            erro = 1
 
-erro = 0
-for aluno in csv.getAlunos():
-    if len(aluno) != len(csv.getHeader()):
-        print 'Um erro ocorreu! len(aluno) != len(csv.getHeader())!'
-        print aluno
-        erro = 1
+    if erro == 0:
+        print 'Todos alunos foram verificados com sucesso!'
+    else:
+        print 'Erros foram encontrados ao verificar a consistencia de dados dos alunos'
 
-if erro == 0:
-    print 'Todos alunos foram verificados com sucesso!'
-else:
-    print 'Erros foram encontrados ao verificar a consistencia de dados dos alunos'
+if DEBUG:
+    test()

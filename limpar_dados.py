@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import csv
 import md5
 from unicodedata import normalize
 
-DEBUG = True
+DEBUG = False
 
 class arquivoCSV(object):
     """Classe para tratar o arquivo CSV"""

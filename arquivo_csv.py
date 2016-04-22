@@ -40,7 +40,19 @@ class arquivoCSV(object):
     def __readHeader(self):
         self.header = []
         for attr in self.__readLine():
+            if attr.upper() == 'CAMPO_NAO_INDICADO':
+                attr = 'CIDADE'
+            if attr.upper() == 'ANO(DATA)':
+                attr = 'ANO_DATA'
+            if not attr.upper().find('CODDISC'):
+                self.ano_referencia = attr.upper().split('CODDISC')[1]
+                attr = 'COD_DISCIPLINA'
+            if not attr.upper().find('MENCAO'):
+                attr = 'MENCAO'
+            if not attr.upper().find('NOME_DISCIPLINA'):
+                attr = 'NOME_DISCIPLINA'
             self.header.append(attr.upper())
+        self.header.append('ANO_SEM_REFERENCIA')
         self.__removeAttributes(self.header)
 
     def __readAlunos(self):
@@ -72,6 +84,10 @@ class arquivoCSV(object):
         self.md5.update(source[0])
         source[0] = self.md5.hexdigest()
         source[3] = source[3].split('/')[2]
+        if source[1].upper() == 'Masculino'.upper():
+            source[1] = 'M'
+        else:
+            source[1] = 'F'
 
     def __readAllFile(self):
         self.arquivo.seek(0)
@@ -84,7 +100,12 @@ class arquivoCSV(object):
         source = source.replace(',','_')
         source = source.replace(' ','_')
         source = source.replace('.','_')
+        source = source.replace('___','_')
+        source = source.replace('__','_')
         return normalize('NFKD', source).encode('ASCII','ignore')
+
+    def getAnoRef(self):
+        return self.ano_referencia
 
     def getAlunos(self):
         return self.alunos

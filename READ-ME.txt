@@ -1,0 +1,8 @@
+Para inserir todos dados dos arquivos csv no banco de dados:
+
+1- Abra o arquivo inserir_dados_sql.py e modifique o usuario e senha:
+"db = MySQLdb.connect(host="localhost", user="root", passwd="", db="DADOS_ALUNOS_LICMAT")"
+
+2- Certifique-se que todos arquivos CSV estejam no mesmo diretório dos scripts.
+
+3- Execute o arquivo inserir_massa.sh: ./inserir_massa.sh ou sh ./inserir_massa.sh

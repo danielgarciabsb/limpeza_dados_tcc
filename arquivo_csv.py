@@ -5,7 +5,7 @@ import sys
 import md5
 from unicodedata import normalize
 
-DEBUG = False
+DEBUG = True
 
 class arquivoCSV(object):
     """Classe para tratar o arquivo CSV"""
@@ -125,7 +125,7 @@ def test():
 
     erro = 0
     for aluno in csv.getAlunos():
-        if len(aluno) != len(csv.getHeader()):
+        if len(aluno) + 1 != len(csv.getHeader()):
             print 'Um erro ocorreu! len(aluno) != len(csv.getHeader())!'
             print aluno
             erro = 1

@@ -5,7 +5,7 @@ import sys
 import md5
 from unicodedata import normalize
 
-DEBUG = True
+DEBUG = False #False ou True
 
 class arquivoCSV(object):
     """Classe para tratar o arquivo CSV"""

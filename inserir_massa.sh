@@ -8,4 +8,4 @@ function domultiple {
 
 arr=$(ls *.csv);
 
-domultiple "python ./arquivo_csv.py" "arr"
+domultiple "python ./inserir_dados_sql.py" "arr"

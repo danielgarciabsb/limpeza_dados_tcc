@@ -14,7 +14,7 @@ db = MySQLdb.connect(host="localhost", user="root", passwd="", db="DADOS_ALUNOS_
 cur = db.cursor()
 
 def gerarInsert(aluno):
-    query = 'INSERT INTO ALUNO VALUES ('
+    query = 'INSERT INTO ALUNO VALUES (NULL,'
     for item in aluno:
         if item == '':
             query += 'NULL,'
@@ -26,7 +26,7 @@ def gerarInsert(aluno):
 
 print '\n---\nINSERINDO DADOS NO BANCO DE DADOS\n---\n'
 
-num_aluno = 0
+num_aluno = 1
 
 for aluno in csv.getAlunos():
     try:

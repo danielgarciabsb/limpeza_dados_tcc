@@ -76,13 +76,9 @@ class arquivoCSV(object):
             c += 1
 
     def __hideSensitive(self, source):
-        try:
-            self.md5
-        except:
-            self.md5 = md5.new()
-
-        self.md5.update(source[0])
-        source[0] = self.md5.hexdigest()
+        matricula = md5.new()
+        matricula.update(source[0])
+        source[0] = matricula.hexdigest()
         source[3] = source[3].split('/')[2]
         if source[1].upper() == 'Masculino'.upper():
             source[1] = 'M'

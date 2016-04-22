@@ -118,7 +118,7 @@ def test():
     print csv.getAlunos()
     print csv.getHeader()
 
-    print 'Quantidade de atributos: %d' % len(csv.getHeader()) + 1
+    print 'Quantidade de atributos: %d' % (len(csv.getHeader()) + 1)
     print 'Quantidade de alunos: %d' % len(csv.getAlunos())
 
     print 'Verificando a consistencia (quantidade de atributos) de cada aluno...'
